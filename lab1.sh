@@ -7,10 +7,64 @@ WORKING_DIR=".pb"
 DATA="$WORKING_DIR/phonebook" 
 
 # Create the directory here:
-##mkdir "$WORKING_DIR"
+mkdir -p "$WORKING_DIR"
 
 # Creates the file here: (this file will contain the phonebook registries)
 touch "$DATA"
+
+
+addRecord(){
+	read -p 'Name:' -i name 
+	read -p 'Number: ' num;
+	REC="$name $num" #variable to store name and num
+	echo "$REC" >> "$DATA" #append name and number to phonebook
+	echo "Record has been Added."
+	sleep 3
+
+
+}
+
+searchRecord(){
+	read -p "search Record: " search 
+	if [-z "$search" ]; then # -z checks if string is empty
+		echo "No Input"
+		
+	
+	else
+		found=`grep "$search" "$DATA"`;
+		if [-z "$found" ];then
+			echo "There is no $search in directory"
+			
+		fi
+	fi
+	
+}	
+
+#deleteRecord(){
+
+#}
+
+viewRecords(){
+
+	cat $DATA
+	
+}
+
+eraseRecords(){
+
+	echo "Do you want to delete all records in phonebook?"
+	read -p "Yes/No:   " answer
+	if [-z "$answer" ]; then
+		echo "No Input"
+	
+	elif ["$answer" == Yes ]; then 
+		#> phonebook
+		#truncate -s 0 phonebook
+	fi
+}
+
+
+
 
 # The main-menu function - 
 # an endless loop that prints the menu, gets input from user and 
@@ -51,37 +105,19 @@ mainMenu(){
 
 mainMenu  
 
-function addRecord
-{
-read -p 'name:' -i name
-
-echo "$name"
-name =$1
-number = $2
-echo "$name $number">"$DATA.txt"
-}
 
 
 
-function searchRecord
-{
-}
 
 
 
-function viewRecords
-{
 
-cat "lab1.sh"
+#function viewRecords
 
 
-}
 
+#function eraseRecords
 
-function eraseRecords
-{
-
-}
 
 
 
