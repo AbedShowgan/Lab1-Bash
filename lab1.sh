@@ -45,21 +45,33 @@ searchRecord(){
 #}
 
 viewRecords(){
-
-	cat $DATA
+		
+	#cat $DATA
+	#echo VIEWRECORDS
+	cat .pb/phonebook
+	sleep 4
 	
 }
 
 eraseRecords(){
 
-	echo "Do you want to delete all records in phonebook?"
-	read -p "Yes/No:   " answer
-	if [-z "$answer" ]; then
+	echo "Do you want to delete all records in phonebook 1 for yes 0 for no?"
+	read -p "1/0:   " answer
+	if [ -z "$answer" ]
+	then
 		echo "No Input"
+		sleep 3
 	
-	elif ["$answer" == Yes ]; then 
-		#> phonebook
-		#truncate -s 0 phonebook
+	#elif ["$answer" -eq 1]; then 
+	elif (("$answer"==1)) 
+	then 
+		#> .pb/phonebook
+		#truncate -s 0 .pb/phonebook
+		#echo -n "" > phonebook
+		#echo -n > .pb/phonebook
+		cat /dev/null > .pb/phonebook
+		#echo yessss
+		sleep 3
 	fi
 }
 
