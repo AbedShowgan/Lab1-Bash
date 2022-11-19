@@ -26,28 +26,30 @@ addRecord(){
 
 searchRecord(){
 	read -p "search Record: " search 
-	if [-z "$search" ]; then # -z checks if string is empty
+	if [ -z "$search" ]
+	then # -z checks if string is empty
 		echo "No Input"
+		sleep 3
 		
 	
 	else
 		found=`grep "$search" "$DATA"`;
-		if [-z "$found" ];then
+		if [ -z "$found" ]
+		then
 			echo "There is no $search in directory"
-			
+			sleep 3
 		fi
+		echo $found
+		sleep 3
+		
 	fi
 	
 }	
 
-#deleteRecord(){
 
-#}
 
 viewRecords(){
 		
-	#cat $DATA
-	#echo VIEWRECORDS
 	cat .pb/phonebook
 	sleep 4
 	
@@ -62,15 +64,9 @@ eraseRecords(){
 		echo "No Input"
 		sleep 3
 	
-	#elif ["$answer" -eq 1]; then 
 	elif (("$answer"==1)) 
 	then 
-		#> .pb/phonebook
-		#truncate -s 0 .pb/phonebook
-		#echo -n "" > phonebook
-		#echo -n > .pb/phonebook
 		cat /dev/null > .pb/phonebook
-		#echo yessss
 		sleep 3
 	fi
 }
@@ -124,11 +120,6 @@ mainMenu
 
 
 
-#function viewRecords
-
-
-
-#function eraseRecords
 
 
 
